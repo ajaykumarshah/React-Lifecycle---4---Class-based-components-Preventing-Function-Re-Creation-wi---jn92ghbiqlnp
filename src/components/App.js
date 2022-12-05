@@ -1,26 +1,23 @@
 import React from 'react'
 import '../styles/App.css';
 
-class App extends React.Component {
-
-  handleClick() {
-    this.setState({ count: this.state.count + 1 })
+class App extends React.Component{
+  
+  handleClick(){
+    this.setState({count: this.state.count + 1})
   }
-  constructor(props) {
+  constructor(props){
     super(props)
-    this.state = { count: 0 }
+    this.state = {count:0}
     this.handleClick = this.handleClick.bind(this)
   }
-  // componentDidUpdate() {
-  //   if (this.state.count % 2 == 0) {
-  //     console.log(`Rendering with count:-${this.state.count}`);
-  //   }
-  // }
 
-  render() {
-    // console.log(`Rendering with count:-${this.state.count}`)
-    { this.state.count % 2 == 0 && console.log(`Rendering with count:-${this.state.count}`) }
-    return (
+  shouldComponentUpdate(nextProps,nextState){
+    return nextState.count % 2 === 0
+  }
+  render(){
+    console.log(`Rendering with count:-${this.state.count}`)
+    return(
       <div>
         <span id="count">{this.state.count}</span>
         <button id="incr-btn" onClick={this.handleClick}>Increment</button>
